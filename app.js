@@ -29,6 +29,24 @@ app.get('/hi', function (request, response) {
     response.send({"msg": `${request.headers.host}}: this is path of HI`});
 });
 
+app.get('/tiutiu', function (request, response) {
+    return response.redirect('http://localhost:8080/');
+    // return app._router.handle(request, response);
+});
+
 app.listen(process.env.PORT || 3000, function () {
     console.log('> listening on port 3000');
+});
+
+
+appss = express();
+
+appss.get('/', function (request, response) {
+    response.send({
+        "msg": `${request.headers.host}}: this is path from tiutiu..`
+    });
+});
+
+appss.listen(process.env.PORT || 8080, function () {
+    console.log('> listening on port 8080');
 });
