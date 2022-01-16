@@ -12,7 +12,7 @@ app.get('/', function (request, response) {
         request.url = '/hi';
         return app._router.handle(request, response);
     } else {
-        response.send({"msg": `${request.headers.host}}: this is orgin`});
+        response.send({"msg": `${request.headers.host}: this is orgin`});
     }
 });
 
@@ -26,11 +26,11 @@ app.get('/hello', function (request, response) {
 });
 
 app.get('/hi', function (request, response) {
-    response.send({"msg": `${request.headers.host}}: this is path of HI`});
+    response.send({"msg": `${request.headers.host}: this is path of HI`});
 });
 
 app.get('/tiutiu', function (request, response) {
-    return response.redirect('http://localhost:8080/');
+    return response.redirect(`http://${request.headers.host.split(':')[0]}:8080/`);
     // return app._router.handle(request, response);
 });
 
